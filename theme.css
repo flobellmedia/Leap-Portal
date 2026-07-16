@@ -1,0 +1,23 @@
+import { Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
+import AuthPage from './pages/AuthPage'
+import PortalGate from './pages/PortalGate'
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<AuthPage />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <PortalGate />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </AuthProvider>
+  )
+}
